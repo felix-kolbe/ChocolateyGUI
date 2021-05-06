@@ -1065,6 +1065,15 @@ namespace ChocolateyGui.Common.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Only Pinned Packages.
+        /// </summary>
+        public static string LocalSourceView_CheckboxPinnedPkgs {
+            get {
+                return ResourceManager.GetString("LocalSourceView_CheckboxPinnedPkgs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Only Packages with Updates.
         /// </summary>
         public static string LocalSourceView_CheckboxPkgsWithUpdates {

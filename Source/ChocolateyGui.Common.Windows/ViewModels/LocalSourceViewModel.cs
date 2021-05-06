@@ -54,6 +54,7 @@ namespace ChocolateyGui.Common.Windows.ViewModels
         private string _searchQuery;
         private bool _showOnlyPackagesWithUpdate;
         private bool _isShowOnlyPackagesWithUpdateEnabled;
+        private bool _showOnlyPinnedPackages;
         private string _sortColumn;
         private bool _sortDescending;
         private bool _isLoading;
@@ -126,6 +127,12 @@ namespace ChocolateyGui.Common.Windows.ViewModels
         {
             get { return _isShowOnlyPackagesWithUpdateEnabled; }
             set { this.SetPropertyValue(ref _isShowOnlyPackagesWithUpdateEnabled, value); }
+        }
+
+        public bool ShowOnlyPinnedPackages
+        {
+            get { return _showOnlyPinnedPackages; }
+            set { this.SetPropertyValue(ref _showOnlyPinnedPackages, value); }
         }
 
         public bool MatchWord
@@ -371,6 +378,7 @@ namespace ChocolateyGui.Common.Windows.ViewModels
                         eventPattern =>
                             eventPattern.EventArgs.PropertyName == nameof(MatchWord) ||
                             eventPattern.EventArgs.PropertyName == nameof(SearchQuery) ||
+                            eventPattern.EventArgs.PropertyName == nameof(ShowOnlyPinnedPackages) ||
                             eventPattern.EventArgs.PropertyName == nameof(ShowOnlyPackagesWithUpdate))
                     .ObserveOnDispatcher()
                     .Subscribe(eventPattern => PackageSource.Refresh());
@@ -431,7 +439,16 @@ namespace ChocolateyGui.Common.Windows.ViewModels
                 }
             }
 
-            if (ShowOnlyPackagesWithUpdate)
+            if (ShowOnlyPinnedPackages)
+            {
+                include &= package.IsPinned;
+
+                if (ShowOnlyPackagesWithUpdate)
+                {
+                    include &= package.CanUpdate;
+                }
+            }
+            else if (ShowOnlyPackagesWithUpdate)
             {
                 include &= package.CanUpdate && !package.IsPinned;
             }

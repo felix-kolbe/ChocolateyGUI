@@ -252,6 +252,9 @@ Error: {1}{2}</value>
   <data name="LocalSourceView_CheckboxPkgsWithUpdates" xml:space="preserve">
     <value>Show Only Packages with Updates</value>
   </data>
+  <data name="LocalSourceView_CheckboxPinnedPkgs" xml:space="preserve">
+    <value>Show Only Pinned Packages</value>
+  </data>
   <data name="LocalSourceView_Grid_Authors" xml:space="preserve">
     <value>Authors</value>
   </data>

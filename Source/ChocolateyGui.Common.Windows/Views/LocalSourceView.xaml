@@ -195,6 +195,12 @@
                           Content="{x:Static properties:Resources.LocalSourceView_CheckboxPkgsWithUpdates}"
                           IsChecked="{Binding ShowOnlyPackagesWithUpdate}"
                           IsEnabled="{Binding IsShowOnlyPackagesWithUpdateEnabled}"/>
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                <CheckBox Name="PinnedCheckBox"
+                          Margin="5"
+                          Style="{StaticResource Chocolatey.Styles.CheckBox.SourceHeader}"
+                          Content="{x:Static properties:Resources.LocalSourceView_CheckboxPinnedPkgs}"
+                          IsChecked="{Binding ShowOnlyPinnedPackages}"/>
             </WrapPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,6">
                 <Button Command="{commands:DataContextCommandAdapter CheckForOutdatedPackages, CanCheckForOutdatedPackages}"
